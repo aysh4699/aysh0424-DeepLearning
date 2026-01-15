@@ -1,0 +1,14 @@
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+import numpy as np
+
+# Get predictions on test set
+y_pred = model.predict(test_generator)
+y_pred_classes = np.argmax(y_pred, axis=1)
+y_true = test_generator.classes
+
+# Confusion matrix
+cm = confusion_matrix(y_true, y_pred_classes)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['Paper', 'Rock', 'Scissors'])
+disp.plot(cmap='Blues')
+plt.title('Confusion Matrix on Test Set')
+plt.show()
